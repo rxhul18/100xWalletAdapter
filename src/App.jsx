@@ -17,7 +17,7 @@ const App = () => {
   
   return (
     <div className='flex flex-col min-h-[100vh] h-100 justify-between'>
-      <ConnectionProvider endpoint={"https://solana-devnet.g.alchemy.com/v2/wcv8PxHAw2FtBInccT2h_MRQTAjCLJIT"}>
+      <ConnectionProvider endpoint={"https://solana-devnet.g.alchemy.com/v2/qEBrm86elczpylMh7CzD6PKWvpM8dyQR"}>
           <WalletProvider wallets={[]} autoConnect>
               <WalletModalProvider>
                   <div>
