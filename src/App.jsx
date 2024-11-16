@@ -1,11 +1,11 @@
-import React, { FC, useMemo } from 'react';
+// import React, { FC, useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
+// import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+// import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
 import {
     WalletModalProvider
 } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
+// import { clusterApiUrl } from '@solana/web3.js';
 // Default styles that can be overridden by your app
 import '@solana/wallet-adapter-react-ui/styles.css';
 import './App.css'
@@ -17,13 +17,12 @@ const App = () => {
   
   return (
     <div className='flex flex-col min-h-[100vh] h-100 justify-between'>
-      <ConnectionProvider endpoint={"https://solana-devnet.g.alchemy.com/v2/wcv8PxHAw2FtBInccT2h_MRQTAjCLJIT"}>
+      
+      <ConnectionProvider endpoint={"https://api.devnet.solana.com"}>
           <WalletProvider wallets={[]} autoConnect>
               <WalletModalProvider>
                   <div>
                     <Navbar />
-                    {/* <Airdrop /> 
-                    <SendTokens /> */}
                     <Home />
                   </div>
                   <Footer />
