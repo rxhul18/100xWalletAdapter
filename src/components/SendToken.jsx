@@ -1,5 +1,6 @@
 import { useConnection, useWallet } from "@solana/wallet-adapter-react"
 import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction} from "@solana/web3.js";
+import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -8,7 +9,7 @@ export function SendTokens() {
     const wallet = useWallet();
     const {connection} = useConnection();
     const notify = (meassage) => toast(meassage);
-
+    const [loading,setLoading] = useState(false);
 
     async function sendTokens() {
         let to = document.getElementById("to").value;
@@ -20,10 +21,12 @@ export function SendTokens() {
                 toPubkey: new PublicKey(to),
                 lamports: amount * LAMPORTS_PER_SOL,
             }));
-    
+            setLoading(true);
             await wallet.sendTransaction(transaction, connection);
+            setLoading(false);
             notify("Successfully sent " + amount + " SOL to " + to);
         } catch (e) {
+            setLoading(false);
             notify("Failed to send " + amount + " SOL to " + to + ": " + e.message);
         }
     }
@@ -47,6 +50,9 @@ export function SendTokens() {
         position="bottom-right"
         hideProgressBar={false}
         />
+        {loading === true ? <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="animate-ping rounded-full h-20 w-20 border-8 border-[#FF6500]"></div>
+        </div> : null}
     </div>
     )
 }
